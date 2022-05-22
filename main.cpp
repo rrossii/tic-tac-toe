@@ -7,7 +7,6 @@ int main(int argc, char *argv[]) {
 
     HrestNol game;
     game.setWindowTitle("Tic-tac-toe game");
-    game.resize(600, 500);
     game.show();
     return QApplication::exec();
 }

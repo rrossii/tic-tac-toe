@@ -10,7 +10,7 @@ public:
         InProgress,
         Draw,
         WonX,
-        WonY
+        WonO
     };
 
     void Move(int x, int y);
@@ -27,6 +27,5 @@ private:
     int cols = 3;
     std::vector<std::vector<int>> board = std::vector<std::vector<int>>(rows, std::vector<int>(cols, 0));
 };
-
 
 #endif //TIC_TAC_TOE_GAME_HH

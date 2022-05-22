@@ -9,7 +9,7 @@ Game::GameResult Game::Result() {
     }
 
     auto result = [](int x) {
-        return x == 1 ? GameResult::WonX : GameResult::WonY;
+        return (x == 1) ? GameResult::WonX : GameResult::WonO;
     };
 
     for (auto &row : board) {
@@ -38,13 +38,13 @@ Game::GameResult Game::Result() {
     }
 }
 
-bool Game::XMove() {
+bool Game::XMove() { // чи зараз хід Хрестика
     return xmove;
 }
 
 void Game::Move(int x, int y) {
     assert(board[x][y] == 0);
-    // 1 -> x, 2 -> O
-    board[x][y] = xmove ? 1 : 2;
+    // 1 -> X, 2 -> O
+    board[x][y] = (xmove) ? 1 : 2;
     xmove = !xmove;
 }

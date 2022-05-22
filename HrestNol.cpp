@@ -1,24 +1,12 @@
 #include "HrestNol.h"
 #include <QGridLayout>
-#include <QHBoxLayout>
 #include <QPushButton>
+#include <QMessageBox>
 #include <qdebug.h>
 
 HrestNol::HrestNol(QWidget *qw) : QWidget(qw) {
+    auto *grid1 = new QGridLayout(this);
 
-    qb00->setGeometry(0,  0, 50, 50);
-    qb01->setGeometry(0, 1, 50, 50);
-    qb02->setGeometry(0, 2, 50, 50);
-    qb10->setGeometry(1, 0, 50, 50);
-    qb11->setGeometry(1, 1, 50, 50);
-    qb12->setGeometry(1, 2, 50, 50);
-    qb20->setGeometry(2, 0, 50, 50);
-    qb21->setGeometry(2, 1, 50, 50);
-    qb22->setGeometry(2, 2, 50, 50);
-    auto *layout1 = new QHBoxLayout(this);
-    //auto *grid1 = new QGridLayout(this);
-
-    // slot
     connect(qb00, &QPushButton::clicked, this, [&](){
         qb00->setText(QString::fromStdString(game.XMove() ? "X" : "O"));
         game.Move(0, 0);
@@ -51,36 +39,47 @@ HrestNol::HrestNol(QWidget *qw) : QWidget(qw) {
         CheckResult();
     });
 
-//
-//    grid1->addWidget(qb00, 0, 0);
-//    grid1->addWidget(qb01, 0, 1);
-//    grid1->addWidget(qb02, 0, 2);
-//    grid1->addWidget(qb10, 1, 0);
-//    grid1->addWidget(qb11, 1, 1);
-//    grid1->addWidget(qb12, 1, 2);
-//    grid1->addWidget(qb20, 2, 0);
-//    grid1->addWidget(qb21, 2, 1);
-//    grid1->addWidget(qb22, 2, 2);
-    layout1->addWidget(qb00);
-    layout1->addWidget(qb01);
-    layout1->addWidget(qb02);
-    setLayout(layout1);
-    //setLayout(grid1);
+    grid1->addWidget(qb00, 0, 0);
+    grid1->addWidget(qb01, 0, 1);
+    grid1->addWidget(qb02, 0, 2);
+    grid1->addWidget(qb10, 1, 0);
+    grid1->addWidget(qb11, 1, 1);
+    grid1->addWidget(qb12, 1, 2);
+    grid1->addWidget(qb20, 2, 0);
+    grid1->addWidget(qb21, 2, 1);
+    grid1->addWidget(qb22, 2, 2);
+    setLayout(grid1);
+
 }
 
 void HrestNol::CheckResult() {
     switch (game.Result()) {
         case Game::GameResult::Draw: {
-            qDebug() << "Draw";
+            QMessageBox msb;
+            msb.setText("Draw");
+            msb.show();
+            msb.exec();
             break;
         }
-        case Game::GameResult::WonX:{
-            qDebug() << "WonX";
+        case Game::GameResult::WonX: {
+            QMessageBox msb;
+            msb.setText("X won!");
+            msb.show();
+            msb.exec();
             break;
         }
-        case Game::GameResult::WonY:{
-            qDebug() << "WonY";
+        case Game::GameResult::WonO: {
+            QMessageBox msb;
+            msb.setText("Y won!");
+            msb.show();
+            msb.exec();
             break;
         }
     }
 }
+//void HrestNol::PlayGame() {
+//    qb00->setText(QString::fromStdString(game.XMove() ? "X" : "O"));
+//    game.Move(0, 0);
+//    qb00->setEnabled(false);
+//    CheckResult();
+//}
