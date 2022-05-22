@@ -19,7 +19,6 @@ HrestNol::HrestNol(QWidget *qw) : QWidget(qw) {
         qb01->setEnabled(false);
         CheckResult();
     });
-
     connect(qb02, &QPushButton::clicked, this, [&](){
         qb02->setText(QString::fromStdString(game.XMove() ? "X" : "O"));
         game.Move(0, 2);
@@ -36,6 +35,29 @@ HrestNol::HrestNol(QWidget *qw) : QWidget(qw) {
         qb11->setText(QString::fromStdString(game.XMove() ? "X" : "O"));
         game.Move(1, 1);
         qb11->setEnabled(false);
+        CheckResult();
+    });
+    connect(qb12, &QPushButton::clicked, this, [&](){
+        qb12->setText(QString::fromStdString(game.XMove() ? "X" : "O"));
+        game.Move(1, 2);
+        qb12->setEnabled(false);
+        CheckResult();
+    });
+    connect(qb20, &QPushButton::clicked, this, [&](){
+        qb20->setText(QString::fromStdString(game.XMove() ? "X" : "O"));
+        game.Move(2, 0);
+        qb20->setEnabled(false);
+        CheckResult();
+    });connect(qb21, &QPushButton::clicked, this, [&](){
+        qb21->setText(QString::fromStdString(game.XMove() ? "X" : "O"));
+        game.Move(2, 1);
+        qb21->setEnabled(false);
+        CheckResult();
+    });
+    connect(qb22, &QPushButton::clicked, this, [&](){
+        qb22->setText(QString::fromStdString(game.XMove() ? "X" : "O"));
+        game.Move(2, 2);
+        qb22->setEnabled(false);
         CheckResult();
     });
 
@@ -70,16 +92,13 @@ void HrestNol::CheckResult() {
         }
         case Game::GameResult::WonO: {
             QMessageBox msb;
-            msb.setText("Y won!");
+            msb.setText("O won!");
             msb.show();
             msb.exec();
             break;
         }
+        case Game::GameResult::InProgress: {
+            break;
+        }
     }
 }
-//void HrestNol::PlayGame() {
-//    qb00->setText(QString::fromStdString(game.XMove() ? "X" : "O"));
-//    game.Move(0, 0);
-//    qb00->setEnabled(false);
-//    CheckResult();
-//}

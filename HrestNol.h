@@ -9,8 +9,6 @@ class HrestNol : public QWidget {
     Q_OBJECT
 public:
     HrestNol(QWidget *qw = 0);
-private slots:
-    void PlayGame();
 
 private:
     void CheckResult();
