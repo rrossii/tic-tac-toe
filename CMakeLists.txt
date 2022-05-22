@@ -13,7 +13,7 @@ find_package(Qt5 COMPONENTS
         Widgets
         REQUIRED)
 
-add_executable(tic_tac_toe main.cpp HrestNol.cpp HrestNol.h)
+add_executable(tic_tac_toe main.cpp HrestNol.cpp HrestNol.h game.cc game.hh)
 target_link_libraries(tic_tac_toe
         Qt5::Core
         Qt5::Gui
